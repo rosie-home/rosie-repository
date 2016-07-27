@@ -36,12 +36,8 @@
     }
   ],
   "id": null,
-  "title": "Environment Dashboard",
-  "tags": [
-    "Environment",
-    "Smart Home",
-    "Sensors"
-  ],
+  "title": "Office Dashboard",
+  "tags": [],
   "style": "dark",
   "timezone": "browser",
   "editable": true,
@@ -51,7 +47,7 @@
     {
       "collapse": false,
       "editable": true,
-      "height": "350px",
+      "height": "450px",
       "panels": [
         {
           "aliasColors": {},
@@ -64,36 +60,48 @@
             "threshold1": null,
             "threshold1Color": "rgba(216, 200, 27, 0.27)",
             "threshold2": null,
-            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+            "threshold2Color": "rgba(234, 112, 112, 0.22)",
+            "thresholdLine": false
           },
-          "id": 1,
+          "id": 2,
           "isNew": true,
           "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "max": true,
-            "min": true,
-            "rightSide": true,
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
             "show": true,
             "total": false,
-            "values": true
+            "values": false
           },
           "lines": true,
-          "linewidth": 2,
+          "linewidth": 1,
           "links": [],
           "nullPointMode": "connected",
           "percentage": false,
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "seriesOverrides": [],
+          "seriesOverrides": [
+            {
+              "alias": "Humidity",
+              "yaxis": 2
+            },
+            {
+              "alias": "Barometric",
+              "yaxis": 2
+            },
+            {
+              "alias": "Pressure",
+              "yaxis": 2
+            }
+          ],
           "span": 12,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "alias": "Office Temp",
+              "alias": "Temp",
               "dsType": "influxdb",
               "groupBy": [
                 {
@@ -136,7 +144,7 @@
               ]
             },
             {
-              "alias": "Entryway Temp",
+              "alias": "Humidity",
               "dsType": "influxdb",
               "groupBy": [
                 {
@@ -160,7 +168,7 @@
                 [
                   {
                     "params": [
-                      "temperature"
+                      "humidity"
                     ],
                     "type": "field"
                   },
@@ -174,14 +182,14 @@
                 {
                   "key": "environment",
                   "operator": "=",
-                  "value": "Entryway"
+                  "value": "office"
                 }
               ]
             }
           ],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Temperature Readings",
+          "title": "Office Readings",
           "tooltip": {
             "msResolution": false,
             "shared": true,
@@ -194,7 +202,7 @@
           },
           "yaxes": [
             {
-              "format": "short",
+              "format": "farenheit",
               "label": null,
               "logBase": 1,
               "max": null,
@@ -202,7 +210,7 @@
               "show": true
             },
             {
-              "format": "short",
+              "format": "humidity",
               "label": null,
               "logBase": 1,
               "max": null,
@@ -212,7 +220,7 @@
           ]
         }
       ],
-      "title": "Row"
+      "title": "New row"
     },
     {
       "collapse": false,
@@ -229,115 +237,7 @@
             "rgba(245, 54, 54, 0.9)"
           ],
           "datasource": "${DS_ROSIE_(INFLUXDB)}",
-          "editable": true,
-          "error": false,
-          "format": "farenheit",
-          "gauge": {
-            "maxValue": 100,
-            "minValue": 0,
-            "show": true,
-            "thresholdLabels": false,
-            "thresholdMarkers": true
-          },
-          "id": 2,
-          "interval": null,
-          "isNew": true,
-          "links": [],
-          "mappingType": 1,
-          "mappingTypes": [
-            {
-              "name": "value to text",
-              "value": 1
-            },
-            {
-              "name": "range to text",
-              "value": 2
-            }
-          ],
-          "maxDataPoints": 100,
-          "nullPointMode": "connected",
-          "nullText": null,
-          "postfix": "",
-          "postfixFontSize": "50%",
-          "prefix": "",
-          "prefixFontSize": "50%",
-          "rangeMaps": [
-            {
-              "from": "null",
-              "text": "N/A",
-              "to": "null"
-            }
-          ],
-          "span": 6,
-          "sparkline": {
-            "fillColor": "rgba(31, 118, 189, 0.18)",
-            "full": true,
-            "lineColor": "rgb(31, 120, 193)",
-            "show": true
-          },
-          "targets": [
-            {
-              "alias": "Current Temp",
-              "dsType": "influxdb",
-              "groupBy": [
-                {
-                  "params": [
-                    "$interval"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "null"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "policy": "default",
-              "query": "SELECT \"temperature\" FROM \"environment\" WHERE \"environment\" = 'office' AND $timeFilter",
-              "rawQuery": true,
-              "refId": "A",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "value"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": []
-            }
-          ],
-          "thresholds": "70,90",
-          "title": "Office Temp",
-          "type": "singlestat",
-          "valueFontSize": "120%",
-          "valueMaps": [
-            {
-              "op": "=",
-              "text": "N/A",
-              "value": "null"
-            }
-          ],
-          "valueName": "current"
-        },
-        {
-          "cacheTimeout": null,
-          "colorBackground": false,
-          "colorValue": false,
-          "colors": [
-            "rgba(50, 172, 45, 0.97)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(245, 54, 54, 0.9)"
-          ],
-          "datasource": "${DS_ROSIE_(INFLUXDB)}",
+          "decimals": null,
           "editable": true,
           "error": false,
           "format": "farenheit",
@@ -388,6 +288,83 @@
             {
               "alias": "Current Temp",
               "dsType": "influxdb",
+              "groupBy": [],
+              "measurement": "environment",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "temperature"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "environment",
+                  "operator": "=",
+                  "value": "office"
+                }
+              ]
+            }
+          ],
+          "thresholds": "70,90",
+          "title": "Current Office Temp",
+          "type": "singlestat",
+          "valueFontSize": "120%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_ROSIE_(INFLUXDB)}",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 4,
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Barometric",
+              "dsType": "influxdb",
               "groupBy": [
                 {
                   "params": [
@@ -402,16 +379,15 @@
                   "type": "fill"
                 }
               ],
+              "measurement": "environment",
               "policy": "default",
-              "query": "SELECT \"temperature\" FROM \"environment\" WHERE \"environment\" = 'Entryway' AND $timeFilter",
-              "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
               "select": [
                 [
                   {
                     "params": [
-                      "value"
+                      "barometric"
                     ],
                     "type": "field"
                   },
@@ -421,11 +397,188 @@
                   }
                 ]
               ],
-              "tags": []
+              "tags": [
+                {
+                  "key": "environment",
+                  "operator": "=",
+                  "value": "office"
+                }
+              ]
+            },
+            {
+              "alias": "Pressure",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "environment",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "pressure"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "environment",
+                  "operator": "=",
+                  "value": "office"
+                }
+              ]
             }
           ],
-          "thresholds": "70,90",
-          "title": "Entryway Temp",
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Pressure Readings",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "title": "Row"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_ROSIE_(INFLUXDB)}",
+          "editable": true,
+          "error": false,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 5,
+          "interval": null,
+          "isNew": true,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 6,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "groupBy": [],
+              "hide": false,
+              "measurement": "environment",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "temperature"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "count"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "environment",
+                  "operator": "=",
+                  "value": "office"
+                }
+              ]
+            }
+          ],
+          "thresholds": "",
+          "title": "Total Records",
           "type": "singlestat",
           "valueFontSize": "120%",
           "valueMaps": [
@@ -436,178 +589,121 @@
             }
           ],
           "valueName": "current"
-        }
-      ],
-      "title": "New row"
-    },
-    {
-      "collapse": false,
-      "editable": true,
-      "height": "250px",
-      "panels": [
+        },
         {
-          "title": "Temperature Variance",
-          "error": false,
-          "span": 12,
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "${DS_ROSIE_(INFLUXDB)}",
           "editable": true,
-          "type": "graph",
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 6,
+          "interval": "",
           "isNew": true,
-          "id": 4,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
           "targets": [
             {
-              "policy": "default",
+              "alias": "Count Per Minute",
               "dsType": "influxdb",
-              "resultFormat": "time_series",
-              "tags": [
-                {
-                  "key": "environment",
-                  "operator": "=",
-                  "value": "Entryway"
-                }
-              ],
               "groupBy": [
                 {
-                  "type": "time",
                   "params": [
-                    "$interval"
-                  ]
-                },
-                {
-                  "type": "fill",
-                  "params": [
-                    "null"
-                  ]
+                    "1m"
+                  ],
+                  "type": "time"
                 }
               ],
-              "select": [
-                [
-                  {
-                    "type": "field",
-                    "params": [
-                      "target_temperature"
-                    ]
-                  },
-                  {
-                    "type": "mean",
-                    "params": []
-                  }
-                ]
-              ],
-              "refId": "A",
               "measurement": "environment",
-              "alias": "Target Temp"
-            },
-            {
               "policy": "default",
-              "dsType": "influxdb",
+              "refId": "A",
               "resultFormat": "time_series",
-              "tags": [
-                {
-                  "key": "environment",
-                  "operator": "=",
-                  "value": "Entryway"
-                }
-              ],
-              "groupBy": [
-                {
-                  "type": "time",
-                  "params": [
-                    "$interval"
-                  ]
-                },
-                {
-                  "type": "fill",
-                  "params": [
-                    "null"
-                  ]
-                }
-              ],
               "select": [
                 [
                   {
-                    "type": "field",
                     "params": [
                       "temperature"
-                    ]
+                    ],
+                    "type": "field"
                   },
                   {
-                    "type": "mean",
-                    "params": []
+                    "params": [],
+                    "type": "count"
                   }
                 ]
               ],
-              "refId": "B",
-              "measurement": "environment",
-              "alias": "Current Temperature"
+              "tags": [
+                {
+                  "key": "environment",
+                  "operator": "=",
+                  "value": "office"
+                }
+              ]
             }
           ],
-          "datasource": "${DS_ROSIE_(INFLUXDB)}",
-          "renderer": "flot",
-          "yaxes": [
-            {
-              "label": null,
-              "show": true,
-              "logBase": 1,
-              "min": null,
-              "max": null,
-              "format": "farenheit"
-            },
-            {
-              "label": null,
-              "show": true,
-              "logBase": 1,
-              "min": null,
-              "max": null,
-              "format": "short"
-            }
-          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Environment Records",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
           "xaxis": {
             "show": true
           },
-          "grid": {
-            "threshold1": null,
-            "threshold2": null,
-            "threshold1Color": "rgba(216, 200, 27, 0.27)",
-            "threshold2Color": "rgba(234, 112, 112, 0.22)"
-          },
-          "lines": true,
-          "fill": 2,
-          "linewidth": 3,
-          "points": false,
-          "pointradius": 5,
-          "bars": false,
-          "stack": false,
-          "percentage": false,
-          "legend": {
-            "show": true,
-            "values": false,
-            "min": false,
-            "max": false,
-            "current": false,
-            "total": false,
-            "avg": false,
-            "alignAsTable": false
-          },
-          "nullPointMode": "connected",
-          "steppedLine": false,
-          "tooltip": {
-            "value_type": "cumulative",
-            "shared": true,
-            "sort": 0,
-            "msResolution": false
-          },
-          "timeFrom": null,
-          "timeShift": null,
-          "aliasColors": {},
-          "seriesOverrides": [],
-          "links": []
+          "yaxes": [
+            {
+              "format": "short",
+              "label": "Count",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
         }
       ],
       "title": "New row"
     }
   ],
   "time": {
-    "from": "now-1h",
+    "from": "now/d",
     "to": "now"
   },
   "timepicker": {
@@ -641,8 +737,9 @@
   "annotations": {
     "list": []
   },
+  "refresh": false,
   "schemaVersion": 12,
-  "version": 6,
+  "version": 12,
   "links": [],
   "gnetId": null
 }
