@@ -36,7 +36,7 @@
     }
   ],
   "id": null,
-  "title": "Hub Statistics",
+  "title": "Repository Statistics",
   "tags": [],
   "style": "dark",
   "timezone": "browser",
@@ -125,7 +125,7 @@
                 {
                   "key": "host",
                   "operator": "=",
-                  "value": "Artik-Hub"
+                  "value": "raspberrypi"
                 }
               ]
             }
@@ -267,7 +267,7 @@
                 {
                   "key": "host",
                   "operator": "=",
-                  "value": "Artik-Hub"
+                  "value": "raspberrypi"
                 }
               ]
             }
@@ -361,7 +361,7 @@
                 {
                   "key": "host",
                   "operator": "=",
-                  "value": "Artik-Hub"
+                  "value": "raspberrypi"
                 }
               ]
             }
@@ -439,7 +439,7 @@
   },
   "refresh": false,
   "schemaVersion": 12,
-  "version": 5,
+  "version": 1,
   "links": [],
   "gnetId": null
 }
