@@ -252,7 +252,7 @@ sudo systemctl start telegraf
 
 ### Auto-starting Grafana
 
-Auto-starting Grafana is the simpliest of allow
+Auto-starting Grafana is the simpliest of all
 
 ```
 sudo systemctl daemon-reload
