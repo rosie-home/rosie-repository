@@ -23,7 +23,7 @@ Raspbian already has node 0.10.29, but not npm. Let's grab a newer version of bo
 
   ```
   sudo apt-get install build-essential
-  sudo apr-get install nodejs
+  sudo apt-get install nodejs
   sudo apt-get install npm
   ```
 
