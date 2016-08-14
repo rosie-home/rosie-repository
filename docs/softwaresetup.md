@@ -1,5 +1,11 @@
 # Software Setup for the Rosie Repository
 
+The Rosie Repository relies on three primary software packages to do its work:
+
+- [InfluxDB](https://influxdata.com/time-series-platform/influxdb/)
+- [Telegraf](https://influxdata.com/time-series-platform/telegraf/)
+- [Grafana](https://influxdata.com/time-series-platform/telegraf/)
+
 The instructions below assume you're installing this software on a Raspberry Pi 3 running Debian.
 If your hardware or OS is different, be sure to inspect the instructions below to note OS differences, 
 which would likely manifest either in the package manager used or the platform architecture (ARM is assumed below).
